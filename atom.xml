@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, Syaoran</rights>
   <subtitle>日日新，又日新</subtitle>
   <title>Syaoran's Blog</title>
-  <updated>2026-04-27T12:29:40.388Z</updated>
+  <updated>2026-05-10T13:19:13.468Z</updated>
+  <entry>
+    <author>
+      <name>Syaoran</name>
+    </author>
+    <category term="blog" scheme="https://tsubasa-syaoran.github.io/categories/blog/"/>
+    <category term="blog" scheme="https://tsubasa-syaoran.github.io/tags/blog/"/>
+    <content>
+      <![CDATA[<h1 id="blog-代办事项"><a href="#blog-代办事项" class="headerlink" title="blog 代办事项"></a>blog 代办事项</h1><h3 id="20260510"><a href="#20260510" class="headerlink" title="20260510"></a>20260510</h3><ul><li>每个blog 单独的图片，图片地址指向自己的图床网站 done</li><li>背景音乐集设置为自己喜欢的</li><li>创建游戏，算法等项目板块</li><li>将文章设为不同的板块</li><li>专门一篇文章介绍hexo 的使用</li></ul>]]>
+    </content>
+    <id>https://tsubasa-syaoran.github.io/2026/05/10/blog-todolist/</id>
+    <link href="https://tsubasa-syaoran.github.io/2026/05/10/blog-todolist/"/>
+    <published>2026-05-10T12:04:01.000Z</published>
+    <summary>
+      <![CDATA[<h1 id="blog-代办事项"><a href="#blog-代办事项" class="headerlink" title="blog 代办事项"></a>blog 代办事项</h1><h3 id="20260510"><a href="#20260510" class="]]>
+    </summary>
+    <title>blog 的待办事项</title>
+    <updated>2026-05-10T13:19:13.468Z</updated>
+  </entry>
   <entry>
     <author>
       <name>Syaoran</name>
@@ -27,7 +45,7 @@
 <p>模仿阮一峰大佬，把它写成文]]>
     </summary>
     <title>每周分享01</title>
-    <updated>2026-04-27T12:29:40.388Z</updated>
+    <updated>2026-05-10T13:16:10.586Z</updated>
   </entry>
   <entry>
     <author>
@@ -45,7 +63,7 @@
       <![CDATA[<h3 id="主要目标"><a href="#主要目标" class="headerlink" title="主要目标"></a>主要目标</h3><p>使用 Clouflare 搭建的节点，在使用默认功能优选节点时，由于使用的人数较多，导致节点能用但延迟较高、不稳定且大量节点]]>
     </summary>
     <title>Cloudflare免费节点优化</title>
-    <updated>2026-04-27T12:28:57.502Z</updated>
+    <updated>2026-05-10T12:51:12.720Z</updated>
   </entry>
   <entry>
     <author>
@@ -67,7 +85,7 @@
 <li><a href="https://www.gname.net/use]]>
     </summary>
     <title>我的域名汇总</title>
-    <updated>2026-04-24T12:42:12.732Z</updated>
+    <updated>2026-05-10T13:06:50.546Z</updated>
   </entry>
   <entry>
     <author>
@@ -86,7 +104,7 @@
 <]]>
     </summary>
     <title>算法学习记录</title>
-    <updated>2026-04-27T12:30:23.441Z</updated>
+    <updated>2026-05-10T13:10:15.829Z</updated>
   </entry>
   <entry>
     <author>
@@ -103,6 +121,6 @@
       <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for]]>
     </summary>
     <title>Hello World</title>
-    <updated>2026-04-27T13:30:28.093Z</updated>
+    <updated>2026-05-10T13:05:12.386Z</updated>
   </entry>
 </feed>
