@@ -1,0 +1,855 @@
+  <!DOCTYPE html>
+  <html lang="en"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)","en":"Copy successfully (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","en":"Copy failed (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://tsubasa-syaoran.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.i18n_languages = ["en","ja"];</script>
+  <title>
+    docker常用命令 | Syaoran&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="Docker 常用命令总结1. Docker 基础概念   名称 说明    Image（镜像） 类似系统模板   Container（容器） 镜像运行后的实例   Volume（数据卷） 持久化数据   Network（网络） 容器通信    2. Docker 信息查看查看 Docker 版本1docker -v  查看 Docker 详细信息1docker info  查看 Docker 帮">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker常用命令">
+<meta property="og:url" content="https://tsubasa-syaoran.github.io/en/2026/05/15/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Syaoran&#39;s Blog">
+<meta property="og:description" content="Docker 常用命令总结1. Docker 基础概念   名称 说明    Image（镜像） 类似系统模板   Container（容器） 镜像运行后的实例   Volume（数据卷） 持久化数据   Network（网络） 容器通信    2. Docker 信息查看查看 Docker 版本1docker -v  查看 Docker 详细信息1docker info  查看 Docker 帮">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-05-15T04:36:36.000Z">
+<meta property="article:modified_time" content="2026-05-15T04:37:58.893Z">
+<meta property="article:author" content="Syaoran">
+<meta name="twitter:card" content="summary">
+    <link rel="alternate" href="/atom.xml" title="Syaoran's Blog" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/en/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Home</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/en/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Archives</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/en/categories">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Categories</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/en/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">About</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/en/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Friend</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+  </nav>
+    <nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages">
+            <li data-value="zh-CN" role="option" aria-selected="false">简体中文</li>
+            <li data-value="en" role="option" class="selected" aria-selected="true">English</li>
+            <li data-value="ja" role="option" aria-selected="false">日本語</li>
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+              langMap['zh-CN'] = '/2026/05/15/docker常用命令/';
+              langMap['en'] = '/en/2026/05/15/docker常用命令/';
+              langMap['ja'] = '/ja/2026/05/15/docker常用命令/';
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="docker常用命令">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">docker常用命令</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+      <meting-js
+        theme="var(--color-link)"
+        id="2265921590"
+        server="netease"
+        type="playlist"
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      ></meting-js>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">Docker 常用命令总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Docker-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">1. Docker 基础概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Docker-%E4%BF%A1%E6%81%AF%E6%9F%A5%E7%9C%8B"><span class="toc-number">2.</span> <span class="toc-text">2. Docker 信息查看</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E7%89%88%E6%9C%AC"><span class="toc-number">2.1.</span> <span class="toc-text">查看 Docker 版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">查看 Docker 详细信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E5%B8%AE%E5%8A%A9"><span class="toc-number">2.3.</span> <span class="toc-text">查看 Docker 帮助</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E9%95%9C%E5%83%8F%EF%BC%88Image%EF%BC%89%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">3. 镜像（Image）命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F"><span class="toc-number">3.1.</span> <span class="toc-text">查看本地镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E9%95%9C%E5%83%8F"><span class="toc-number">3.2.</span> <span class="toc-text">搜索镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-number">3.3.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="toc-number">3.4.</span> <span class="toc-text">删除镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E6%97%A0%E7%94%A8%E9%95%9C%E5%83%8F"><span class="toc-number">3.5.</span> <span class="toc-text">删除所有无用镜像</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%AE%B9%E5%99%A8%EF%BC%88Container%EF%BC%89%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">4. 容器（Container）命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="toc-number">4.1.</span> <span class="toc-text">创建并运行容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%AE%B9%E5%99%A8%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">5. 容器状态管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">5.1.</span> <span class="toc-text">查看运行中的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8"><span class="toc-number">5.2.</span> <span class="toc-text">查看所有容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-number">5.3.</span> <span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8"><span class="toc-number">5.4.</span> <span class="toc-text">停止容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E5%AE%B9%E5%99%A8"><span class="toc-number">5.5.</span> <span class="toc-text">重启容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%81%9C%E6%AD%A2"><span class="toc-number">5.6.</span> <span class="toc-text">强制停止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8"><span class="toc-number">5.7.</span> <span class="toc-text">删除容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E5%B7%B2%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8"><span class="toc-number">5.8.</span> <span class="toc-text">删除所有已停止容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E6%97%A5%E5%BF%97%E4%B8%8E%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="toc-number">6.</span> <span class="toc-text">6. 日志与进入容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97"><span class="toc-number">6.1.</span> <span class="toc-text">查看日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="toc-number">6.2.</span> <span class="toc-text">进入容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6"><span class="toc-number">7.</span> <span class="toc-text">7. 文件复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%A4%8D%E5%88%B6%E5%88%B0%E5%AE%B9%E5%99%A8"><span class="toc-number">7.1.</span> <span class="toc-text">主机复制到容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%A4%8D%E5%88%B6%E5%88%B0%E4%B8%BB%E6%9C%BA"><span class="toc-number">7.2.</span> <span class="toc-text">容器复制到主机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3"><span class="toc-number">8.</span> <span class="toc-text">8. 网络相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C"><span class="toc-number">8.1.</span> <span class="toc-text">查看网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C"><span class="toc-number">8.2.</span> <span class="toc-text">创建网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%8A%A0%E5%85%A5%E7%BD%91%E7%BB%9C"><span class="toc-number">8.3.</span> <span class="toc-text">容器加入网络</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E6%95%B0%E6%8D%AE%E5%8D%B7%EF%BC%88Volume%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">9. 数据卷（Volume）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-number">9.1.</span> <span class="toc-text">查看数据卷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-number">9.2.</span> <span class="toc-text">创建数据卷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-number">9.3.</span> <span class="toc-text">删除数据卷</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-Docker-Compose"><span class="toc-number">10.</span> <span class="toc-text">10. Docker Compose</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.1.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.2.</span> <span class="toc-text">停止服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97-1"><span class="toc-number">10.3.</span> <span class="toc-text">查看日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.4.</span> <span class="toc-text">重启服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-number">10.5.</span> <span class="toc-text">查看运行状态</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-%E5%B8%B8%E7%94%A8%E5%AE%9E%E6%88%98%E5%91%BD%E4%BB%A4"><span class="toc-number">11.</span> <span class="toc-text">11. 常用实战命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99"><span class="toc-number">11.1.</span> <span class="toc-text">部署静态网站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8"><span class="toc-number">11.2.</span> <span class="toc-text">查看容器资源占用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="toc-number">11.3.</span> <span class="toc-text">查看端口映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-number">11.4.</span> <span class="toc-text">查看容器详细信息</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-%E6%B8%85%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">12.</span> <span class="toc-text">12. 清理系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E6%97%A0%E7%94%A8%E8%B5%84%E6%BA%90"><span class="toc-number">12.1.</span> <span class="toc-text">清理无用资源</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-Docker-%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8"><span class="toc-number">13.</span> <span class="toc-text">13. Docker 自动启动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AE%B9%E5%99%A8%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="toc-number">13.1.</span> <span class="toc-text">设置容器开机自启</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14-Docker-%E5%B8%B8%E8%A7%81%E7%9B%AE%E5%BD%95"><span class="toc-number">14.</span> <span class="toc-text">14. Docker 常见目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15-%E5%B8%B8%E7%94%A8%E6%8E%92%E6%9F%A5%E5%91%BD%E4%BB%A4"><span class="toc-number">15.</span> <span class="toc-text">15. 常用排查命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8"><span class="toc-number">15.1.</span> <span class="toc-text">查看端口占用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E8%BF%9B%E7%A8%8B"><span class="toc-number">15.2.</span> <span class="toc-text">查看 Docker 进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E6%9C%8D%E5%8A%A1%E7%8A%B6%E6%80%81"><span class="toc-number">15.3.</span> <span class="toc-text">查看 Docker 服务状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF-Docker"><span class="toc-number">15.4.</span> <span class="toc-text">重启 Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF-Docker"><span class="toc-number">15.5.</span> <span class="toc-text">开机自启 Docker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-%E4%B8%80%E9%94%AE%E6%9B%B4%E6%96%B0%E5%AE%B9%E5%99%A8"><span class="toc-number">16.</span> <span class="toc-text">16. 一键更新容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E6%96%B0%E9%95%9C%E5%83%8F%E5%B9%B6%E9%87%8D%E5%BB%BA"><span class="toc-number">16.1.</span> <span class="toc-text">拉取新镜像并重建</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#17-%E5%B8%B8%E8%A7%81%E9%95%9C%E5%83%8F"><span class="toc-number">17.</span> <span class="toc-text">17. 常见镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#18-%E6%8E%A8%E8%8D%90%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="toc-number">18.</span> <span class="toc-text">18. 推荐学习路线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#19-%E9%AB%98%E9%A2%91%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="toc-number">19.</span> <span class="toc-text">19. 高频命令速查</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/images/tsubasa-syaoran.png" data-sizes="auto" alt="Syaoran" class="lazyload">
+  <div class="sidebar-author-name">Syaoran</div>
+  <div class="sidebar-description">灯就陪他静静读书</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/tsubasa-syaoran itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/categories" aria-label="Categories"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Categories</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-docker常用命令" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-05-15T04:36:36.000Z" itemprop="datePublished">2026-05-15</time>
+    <time style="display: none;" id="post-update-time">2026-05-15</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="Docker-常用命令总结"><a href="#Docker-常用命令总结" class="headerlink" title="Docker 常用命令总结"></a>Docker 常用命令总结</h1><h2 id="1-Docker-基础概念"><a href="#1-Docker-基础概念" class="headerlink" title="1. Docker 基础概念"></a>1. Docker 基础概念</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Image（镜像）</td>
+<td>类似系统模板</td>
+</tr>
+<tr>
+<td>Container（容器）</td>
+<td>镜像运行后的实例</td>
+</tr>
+<tr>
+<td>Volume（数据卷）</td>
+<td>持久化数据</td>
+</tr>
+<tr>
+<td>Network（网络）</td>
+<td>容器通信</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="2-Docker-信息查看"><a href="#2-Docker-信息查看" class="headerlink" title="2. Docker 信息查看"></a>2. Docker 信息查看</h1><h2 id="查看-Docker-版本"><a href="#查看-Docker-版本" class="headerlink" title="查看 Docker 版本"></a>查看 Docker 版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看-Docker-详细信息"><a href="#查看-Docker-详细信息" class="headerlink" title="查看 Docker 详细信息"></a>查看 Docker 详细信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看-Docker-帮助"><a href="#查看-Docker-帮助" class="headerlink" title="查看 Docker 帮助"></a>查看 Docker 帮助</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker --help</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="3-镜像（Image）命令"><a href="#3-镜像（Image）命令" class="headerlink" title="3. 镜像（Image）命令"></a>3. 镜像（Image）命令</h1><h2 id="查看本地镜像"><a href="#查看本地镜像" class="headerlink" title="查看本地镜像"></a>查看本地镜像</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<h2 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<p>指定版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx:1.27</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi nginx</span><br></pre></td></tr></table></figure>
+
+<p>强制删除：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除所有无用镜像"><a href="#删除所有无用镜像" class="headerlink" title="删除所有无用镜像"></a>删除所有无用镜像</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image prune -a</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="4-容器（Container）命令"><a href="#4-容器（Container）命令" class="headerlink" title="4. 容器（Container）命令"></a>4. 容器（Container）命令</h1><h2 id="创建并运行容器"><a href="#创建并运行容器" class="headerlink" title="创建并运行容器"></a>创建并运行容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run nginx</span><br></pre></td></tr></table></figure>
+
+<p>后台运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d nginx</span><br></pre></td></tr></table></figure>
+
+<p>指定名称：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name my-nginx nginx</span><br></pre></td></tr></table></figure>
+
+<p>端口映射：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8080:80 nginx</span><br></pre></td></tr></table></figure>
+
+<p>挂载目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 8080:80 \</span><br><span class="line">-v /home/html:/usr/share/nginx/html \</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
+
+<p>开机自启：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--restart unless-stopped \</span><br><span class="line">--name my-nginx \</span><br><span class="line">-p 8080:80 \</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="5-容器状态管理"><a href="#5-容器状态管理" class="headerlink" title="5. 容器状态管理"></a>5. 容器状态管理</h1><h2 id="查看运行中的容器"><a href="#查看运行中的容器" class="headerlink" title="查看运行中的容器"></a>查看运行中的容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start 容器ID</span><br></pre></td></tr></table></figure>
+
+<h2 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop 容器ID</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启容器"><a href="#重启容器" class="headerlink" title="重启容器"></a>重启容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart 容器ID</span><br></pre></td></tr></table></figure>
+
+<h2 id="强制停止"><a href="#强制停止" class="headerlink" title="强制停止"></a>强制停止</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker kill 容器ID</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm 容器ID</span><br></pre></td></tr></table></figure>
+
+<p>强制删除：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f 容器ID</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除所有已停止容器"><a href="#删除所有已停止容器" class="headerlink" title="删除所有已停止容器"></a>删除所有已停止容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container prune</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="6-日志与进入容器"><a href="#6-日志与进入容器" class="headerlink" title="6. 日志与进入容器"></a>6. 日志与进入容器</h1><h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs 容器ID</span><br></pre></td></tr></table></figure>
+
+<p>实时日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f 容器ID</span><br></pre></td></tr></table></figure>
+
+<p>最近100行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs --tail 100 容器ID</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 容器ID bash</span><br></pre></td></tr></table></figure>
+
+<p>Alpine 系统：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 容器ID sh</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="7-文件复制"><a href="#7-文件复制" class="headerlink" title="7. 文件复制"></a>7. 文件复制</h1><h2 id="主机复制到容器"><a href="#主机复制到容器" class="headerlink" title="主机复制到容器"></a>主机复制到容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp index.html 容器ID:/usr/share/nginx/html/</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器复制到主机"><a href="#容器复制到主机" class="headerlink" title="容器复制到主机"></a>容器复制到主机</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp 容器ID:/etc/nginx/nginx.conf ./</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="8-网络相关"><a href="#8-网络相关" class="headerlink" title="8. 网络相关"></a>8. 网络相关</h1><h2 id="查看网络"><a href="#查看网络" class="headerlink" title="查看网络"></a>查看网络</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network ls</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建网络"><a href="#创建网络" class="headerlink" title="创建网络"></a>创建网络</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create my-network</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器加入网络"><a href="#容器加入网络" class="headerlink" title="容器加入网络"></a>容器加入网络</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network connect my-network 容器ID</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="9-数据卷（Volume）"><a href="#9-数据卷（Volume）" class="headerlink" title="9. 数据卷（Volume）"></a>9. 数据卷（Volume）</h1><h2 id="查看数据卷"><a href="#查看数据卷" class="headerlink" title="查看数据卷"></a>查看数据卷</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume ls</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建数据卷"><a href="#创建数据卷" class="headerlink" title="创建数据卷"></a>创建数据卷</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume create mydata</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除数据卷"><a href="#删除数据卷" class="headerlink" title="删除数据卷"></a>删除数据卷</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume rm mydata</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="10-Docker-Compose"><a href="#10-Docker-Compose" class="headerlink" title="10. Docker Compose"></a>10. Docker Compose</h1><h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<h2 id="停止服务"><a href="#停止服务" class="headerlink" title="停止服务"></a>停止服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose down</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看日志-1"><a href="#查看日志-1" class="headerlink" title="查看日志"></a>查看日志</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose logs -f</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看运行状态"><a href="#查看运行状态" class="headerlink" title="查看运行状态"></a>查看运行状态</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose ps</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="11-常用实战命令"><a href="#11-常用实战命令" class="headerlink" title="11. 常用实战命令"></a>11. 常用实战命令</h1><h2 id="部署静态网站"><a href="#部署静态网站" class="headerlink" title="部署静态网站"></a>部署静态网站</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--name web \</span><br><span class="line">--restart unless-stopped \</span><br><span class="line">-p 80:80 \</span><br><span class="line">-v /home/web:/usr/share/nginx/html:ro \</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="查看容器资源占用"><a href="#查看容器资源占用" class="headerlink" title="查看容器资源占用"></a>查看容器资源占用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stats</span><br></pre></td></tr></table></figure>
+
+<p>单个容器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stats 容器ID</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="查看端口映射"><a href="#查看端口映射" class="headerlink" title="查看端口映射"></a>查看端口映射</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker port 容器ID</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="查看容器详细信息"><a href="#查看容器详细信息" class="headerlink" title="查看容器详细信息"></a>查看容器详细信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 容器ID</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="12-清理系统"><a href="#12-清理系统" class="headerlink" title="12. 清理系统"></a>12. 清理系统</h1><h2 id="清理无用资源"><a href="#清理无用资源" class="headerlink" title="清理无用资源"></a>清理无用资源</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker system prune</span><br></pre></td></tr></table></figure>
+
+<p>彻底清理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker system prune -a</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="13-Docker-自动启动"><a href="#13-Docker-自动启动" class="headerlink" title="13. Docker 自动启动"></a>13. Docker 自动启动</h1><h2 id="设置容器开机自启"><a href="#设置容器开机自启" class="headerlink" title="设置容器开机自启"></a>设置容器开机自启</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker update --restart unless-stopped 容器ID</span><br></pre></td></tr></table></figure>
+
+<p>其它策略：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--restart always</span><br><span class="line">--restart on-failure</span><br><span class="line">--restart no</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="14-Docker-常见目录"><a href="#14-Docker-常见目录" class="headerlink" title="14. Docker 常见目录"></a>14. Docker 常见目录</h1><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/var/lib/docker</code></td>
+<td>Docker 数据目录</td>
+</tr>
+<tr>
+<td><code>/usr/share/nginx/html</code></td>
+<td>Nginx 网站目录</td>
+</tr>
+<tr>
+<td><code>/etc/nginx/nginx.conf</code></td>
+<td>Nginx 配置文件</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="15-常用排查命令"><a href="#15-常用排查命令" class="headerlink" title="15. 常用排查命令"></a>15. 常用排查命令</h1><h2 id="查看端口占用"><a href="#查看端口占用" class="headerlink" title="查看端口占用"></a>查看端口占用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss -lntp</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看-Docker-进程"><a href="#查看-Docker-进程" class="headerlink" title="查看 Docker 进程"></a>查看 Docker 进程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看-Docker-服务状态"><a href="#查看-Docker-服务状态" class="headerlink" title="查看 Docker 服务状态"></a>查看 Docker 服务状态</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启-Docker"><a href="#重启-Docker" class="headerlink" title="重启 Docker"></a>重启 Docker</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="开机自启-Docker"><a href="#开机自启-Docker" class="headerlink" title="开机自启 Docker"></a>开机自启 Docker</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="16-一键更新容器"><a href="#16-一键更新容器" class="headerlink" title="16. 一键更新容器"></a>16. 一键更新容器</h1><h2 id="拉取新镜像并重建"><a href="#拉取新镜像并重建" class="headerlink" title="拉取新镜像并重建"></a>拉取新镜像并重建</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="17-常见镜像"><a href="#17-常见镜像" class="headerlink" title="17. 常见镜像"></a>17. 常见镜像</h1><table>
+<thead>
+<tr>
+<th>镜像</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nginx</td>
+<td>Web服务器</td>
+</tr>
+<tr>
+<td>mysql</td>
+<td>数据库</td>
+</tr>
+<tr>
+<td>redis</td>
+<td>缓存</td>
+</tr>
+<tr>
+<td>ubuntu</td>
+<td>Linux环境</td>
+</tr>
+<tr>
+<td>node</td>
+<td>Node.js</td>
+</tr>
+<tr>
+<td>python</td>
+<td>Python环境</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="18-推荐学习路线"><a href="#18-推荐学习路线" class="headerlink" title="18. 推荐学习路线"></a>18. 推荐学习路线</h1><ol>
+<li>Docker 基础</li>
+<li>镜像与容器</li>
+<li>数据卷</li>
+<li>网络</li>
+<li>Docker Compose</li>
+<li>Nginx + Docker</li>
+<li>多容器部署</li>
+<li>CI&#x2F;CD 自动化部署</li>
+</ol>
+<hr>
+<h1 id="19-高频命令速查"><a href="#19-高频命令速查" class="headerlink" title="19. 高频命令速查"></a>19. 高频命令速查</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br><span class="line">docker images</span><br><span class="line">docker logs -f 容器ID</span><br><span class="line">docker <span class="built_in">exec</span> -it 容器ID bash</span><br><span class="line">docker restart 容器ID</span><br><span class="line">docker <span class="built_in">rm</span> -f 容器ID</span><br><span class="line">docker rmi 镜像ID</span><br><span class="line">docker compose up -d</span><br><span class="line">docker compose down</span><br><span class="line">docker system prune -a</span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="hexo入门" class="lazyload">
+        <a href="/en/2026/05/15/hexo%E5%85%A5%E9%97%A8/" aria-label="Prev: hexo入门" title="Prev: hexo入门"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+            hexo入门
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="homepage安装" class="lazyload">
+      <a href="/en/2026/05/15/homepage%E5%AE%89%E8%A3%85/" aria-label="Next: homepage安装"  title="Next: homepage安装"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+          homepage安装
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Syaoran
+    </div>
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:41
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">Docker 常用命令总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Docker-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">1. Docker 基础概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Docker-%E4%BF%A1%E6%81%AF%E6%9F%A5%E7%9C%8B"><span class="toc-number">2.</span> <span class="toc-text">2. Docker 信息查看</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E7%89%88%E6%9C%AC"><span class="toc-number">2.1.</span> <span class="toc-text">查看 Docker 版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">查看 Docker 详细信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E5%B8%AE%E5%8A%A9"><span class="toc-number">2.3.</span> <span class="toc-text">查看 Docker 帮助</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E9%95%9C%E5%83%8F%EF%BC%88Image%EF%BC%89%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">3. 镜像（Image）命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F"><span class="toc-number">3.1.</span> <span class="toc-text">查看本地镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E9%95%9C%E5%83%8F"><span class="toc-number">3.2.</span> <span class="toc-text">搜索镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-number">3.3.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="toc-number">3.4.</span> <span class="toc-text">删除镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E6%97%A0%E7%94%A8%E9%95%9C%E5%83%8F"><span class="toc-number">3.5.</span> <span class="toc-text">删除所有无用镜像</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%AE%B9%E5%99%A8%EF%BC%88Container%EF%BC%89%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">4. 容器（Container）命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="toc-number">4.1.</span> <span class="toc-text">创建并运行容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%AE%B9%E5%99%A8%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">5. 容器状态管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">5.1.</span> <span class="toc-text">查看运行中的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8"><span class="toc-number">5.2.</span> <span class="toc-text">查看所有容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-number">5.3.</span> <span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8"><span class="toc-number">5.4.</span> <span class="toc-text">停止容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E5%AE%B9%E5%99%A8"><span class="toc-number">5.5.</span> <span class="toc-text">重启容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%81%9C%E6%AD%A2"><span class="toc-number">5.6.</span> <span class="toc-text">强制停止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8"><span class="toc-number">5.7.</span> <span class="toc-text">删除容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E5%B7%B2%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8"><span class="toc-number">5.8.</span> <span class="toc-text">删除所有已停止容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E6%97%A5%E5%BF%97%E4%B8%8E%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="toc-number">6.</span> <span class="toc-text">6. 日志与进入容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97"><span class="toc-number">6.1.</span> <span class="toc-text">查看日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="toc-number">6.2.</span> <span class="toc-text">进入容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6"><span class="toc-number">7.</span> <span class="toc-text">7. 文件复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%A4%8D%E5%88%B6%E5%88%B0%E5%AE%B9%E5%99%A8"><span class="toc-number">7.1.</span> <span class="toc-text">主机复制到容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%A4%8D%E5%88%B6%E5%88%B0%E4%B8%BB%E6%9C%BA"><span class="toc-number">7.2.</span> <span class="toc-text">容器复制到主机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3"><span class="toc-number">8.</span> <span class="toc-text">8. 网络相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C"><span class="toc-number">8.1.</span> <span class="toc-text">查看网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C"><span class="toc-number">8.2.</span> <span class="toc-text">创建网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%8A%A0%E5%85%A5%E7%BD%91%E7%BB%9C"><span class="toc-number">8.3.</span> <span class="toc-text">容器加入网络</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E6%95%B0%E6%8D%AE%E5%8D%B7%EF%BC%88Volume%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">9. 数据卷（Volume）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-number">9.1.</span> <span class="toc-text">查看数据卷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-number">9.2.</span> <span class="toc-text">创建数据卷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-number">9.3.</span> <span class="toc-text">删除数据卷</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-Docker-Compose"><span class="toc-number">10.</span> <span class="toc-text">10. Docker Compose</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.1.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.2.</span> <span class="toc-text">停止服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97-1"><span class="toc-number">10.3.</span> <span class="toc-text">查看日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.4.</span> <span class="toc-text">重启服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-number">10.5.</span> <span class="toc-text">查看运行状态</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-%E5%B8%B8%E7%94%A8%E5%AE%9E%E6%88%98%E5%91%BD%E4%BB%A4"><span class="toc-number">11.</span> <span class="toc-text">11. 常用实战命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99"><span class="toc-number">11.1.</span> <span class="toc-text">部署静态网站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8"><span class="toc-number">11.2.</span> <span class="toc-text">查看容器资源占用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="toc-number">11.3.</span> <span class="toc-text">查看端口映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-number">11.4.</span> <span class="toc-text">查看容器详细信息</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-%E6%B8%85%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">12.</span> <span class="toc-text">12. 清理系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E6%97%A0%E7%94%A8%E8%B5%84%E6%BA%90"><span class="toc-number">12.1.</span> <span class="toc-text">清理无用资源</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-Docker-%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8"><span class="toc-number">13.</span> <span class="toc-text">13. Docker 自动启动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AE%B9%E5%99%A8%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="toc-number">13.1.</span> <span class="toc-text">设置容器开机自启</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14-Docker-%E5%B8%B8%E8%A7%81%E7%9B%AE%E5%BD%95"><span class="toc-number">14.</span> <span class="toc-text">14. Docker 常见目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15-%E5%B8%B8%E7%94%A8%E6%8E%92%E6%9F%A5%E5%91%BD%E4%BB%A4"><span class="toc-number">15.</span> <span class="toc-text">15. 常用排查命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8"><span class="toc-number">15.1.</span> <span class="toc-text">查看端口占用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E8%BF%9B%E7%A8%8B"><span class="toc-number">15.2.</span> <span class="toc-text">查看 Docker 进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-Docker-%E6%9C%8D%E5%8A%A1%E7%8A%B6%E6%80%81"><span class="toc-number">15.3.</span> <span class="toc-text">查看 Docker 服务状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF-Docker"><span class="toc-number">15.4.</span> <span class="toc-text">重启 Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF-Docker"><span class="toc-number">15.5.</span> <span class="toc-text">开机自启 Docker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-%E4%B8%80%E9%94%AE%E6%9B%B4%E6%96%B0%E5%AE%B9%E5%99%A8"><span class="toc-number">16.</span> <span class="toc-text">16. 一键更新容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E6%96%B0%E9%95%9C%E5%83%8F%E5%B9%B6%E9%87%8D%E5%BB%BA"><span class="toc-number">16.1.</span> <span class="toc-text">拉取新镜像并重建</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#17-%E5%B8%B8%E8%A7%81%E9%95%9C%E5%83%8F"><span class="toc-number">17.</span> <span class="toc-text">17. 常见镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#18-%E6%8E%A8%E8%8D%90%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="toc-number">18.</span> <span class="toc-text">18. 推荐学习路线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#19-%E9%AB%98%E9%A2%91%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="toc-number">19.</span> <span class="toc-text">19. 高频命令速查</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/images/tsubasa-syaoran.png" data-sizes="auto" alt="Syaoran" class="lazyload">
+  <div class="sidebar-author-name">Syaoran</div>
+  <div class="sidebar-description">灯就陪他静静读书</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/tsubasa-syaoran itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/categories" aria-label="Categories"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Categories</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Syaoran",
+          title: "docker常用命令",
+          url: "https://tsubasa-syaoran.github.io/2026/05/15/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/",
+          excerpt: "",
+          description: "",
+          stripContent: "Docker 常用命令总结1. Docker 基础概念   名称 说明    Image（镜像） 类似系统模板   Container（容器） 镜像运行后的实例   Volume（数据卷） 持久化数据   Network（网络） 容器通信    2. Docker 信息查看查看 Docker 版本1docker -v  查看 Docker 详细信息1docker info  查看 Docker 帮助1docker --help   3. 镜像（Image）命令查看本地镜像1docker imag",
+          date: "Fri May 15 2026 12:36:36 GMT+0800",
+          updated: "Fri May 15 2026 12:37:58 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+    <script>
+      var setupAPlayer = () => {
+        if (!true || !window.matchMedia('(max-width: 768px)').matches) {
+          if (window.matchMedia('(max-width: 959px)').matches) {
+            const meting = _$('meting-js');
+            if (meting) {
+              meting.setAttribute('fixed', 'true');
+              const aside = meting.parentNode?.parentNode;
+              if (aside?.tagName === 'ASIDE') {
+                meting.parentNode.removeChild(meting);
+                document.body.appendChild(meting);
+              }
+            }
+          }
+        }
+      };
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+    
+<script src="https://npm.webcache.cn/meting@2.0.1/dist/Meting.min.js" integrity="sha384-ASVlpKF80A22OXTK3tfEjZm1EL6uFMKIC4p8+0maanw1S&#x2F;IyB+Y4JG+ZDU7GpKE8" crossorigin="anonymous" defer></script>
+
+
+
+  </body>
+  </html>
