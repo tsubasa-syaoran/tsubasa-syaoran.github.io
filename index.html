@@ -222,7 +222,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">17</div>
+    <div class="sidebar-state-number">19</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -284,6 +284,71 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/16/nextcloud%E7%BD%91%E7%9B%98/" aria-label="nextcloud网盘" title="nextcloud网盘"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="nextcloud网盘" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-16</span>
+        <span><span class="icon-pencil"></span>171 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">nextcloud网盘</h2>
+      <article class="post-article">
+          # 小白研究所: 搭建专属私人云盘 Nextcloud ｜解锁 VPS 隐藏玩法｜抛弃限速网盘
+安装 Docker1curl -fsSL https://get.docker.com | bash -s docker &amp;amp;&amp;amp; systemctl enable --now docker
+
+创建项目目录1mkdir nextcloud &amp;amp;&amp;amp; cd nextcloud
+
+创建 docker-compose.yml1nano docker-compose.yml
+
+docker-compose.yml 内容123456789101112131415161718192021
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/16/1Panel%E6%90%AD%E5%BB%BA/" aria-label="1Panel搭建" title="1Panel搭建"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="1Panel搭建" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-16</span>
+        <span><span class="icon-pencil"></span>685 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">1Panel搭建</h2>
+      <article class="post-article">
+          最强 VPS 可视化面板 1Panel｜让你的 VPS 像 Windows 一样好用原文：小白研究所 VPS-1Panel 教程
+
+一、什么是 1Panel 面板？1Panel 是一款现代化、开源免费的 Linux 服务器运维管理面板。 (xbiit.net)
+它可以：
+
+通过网页图形界面管理 VPS
+不再依赖复杂 Linux 命令
+基于 Docker 容器技术
+应用彼此隔离
+更安全、更轻量
+
+官方：
+
+1Panel 官网
+1Panel GitHub
+
+
+二、为什么推荐使用 1Panel？1. 降低 VPS 使用门槛传统 Linux VPS：
+123cdvirm -rf
+
+容易输错命令导致系统
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/15/%E8%87%AA%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%84%9A%E6%9C%AC%E5%A4%A7%E5%85%A8/" aria-label="自用服务器脚本大全" title="自用服务器脚本大全"></a>
     <div class="post-cover left">
@@ -581,62 +646,6 @@ Ctrl + Shift
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/10/ubuntu%E7%B3%BB%E7%BB%9FDHCP%E8%8A%82%E7%82%B9%E8%BD%AC%E6%8D%A2%E4%B8%BA%E9%9D%99%E6%80%81IP/" aria-label="ubuntu系统DHCP节点转换为静态IP" title="ubuntu系统DHCP节点转换为静态IP"></a>
-    <div class="post-cover left">
-        <img data-src="https://imbed.nekomini.dpdns.org/file/1778429671943_dhcp转换为静态ip.jpg" data-sizes="auto" alt="ubuntu系统DHCP节点转换为静态IP" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-10</span>
-        <span><span class="icon-pencil"></span>132 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">ubuntu系统DHCP节点转换为静态IP</h2>
-      <article class="post-article">
-          查看本机的ip  192.168.0.0 - 192.168.255.255 为自己本机ip段，我们只许看192起始的ip
-1ip addr 
-
-查看本机gateway ip,192.168.164.2 dev ens33 确认192.168.164.2是gateway ip
-1ip route
-
-转换为root用户
-1sudo su
-输入neko 用户的密码（12345678）
-修改netplan 配置文件
-12cd /etc/netplancat 50-cloud-init.yaml
-修改为
-1234567891011121314network:  version: 2  ethernet
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/10/vmare%E5%AE%89%E8%A3%85ubuntu/" aria-label="vmware安装ubuntu虚拟机" title="vmware安装ubuntu虚拟机"></a>
-    <div class="post-cover right">
-        <img data-src="https://imbed.nekomini.dpdns.org/file/1778430331875_vmware安装ubuntu2.jpg" data-sizes="auto" alt="vmware安装ubuntu虚拟机" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-10</span>
-        <span><span class="icon-pencil"></span>270 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">vmware安装ubuntu虚拟机</h2>
-      <article class="post-article">
-          linux系统安装操作准备
-vmware   需要自己下载，等待后续补充下载链接，官网：https://www.vmware.com/ 
-ubuntu 系统镜像  （https://releases.ubuntu.com/noble/ubuntu-24.04.4-live-server-amd64.iso）
-linuxmint 系统镜像    ( https://mirror.clarkson.edu/linuxmint-images/stable/22.3/linuxmint-22.3-mate-64bit.iso )
-
-操作步骤我已经安装好了，下面图示仅供参考
-step1 虚拟机安装系统镜
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
@@ -660,10 +669,10 @@ step1 虚拟机安装系统镜
       </div>
       <div>
         <span class="icon-brush"></span>
-        8k
+        8.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:41
+        00:45
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -691,7 +700,7 @@ step1 虚拟机安装系统镜
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">17</div>
+    <div class="sidebar-state-number">19</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
